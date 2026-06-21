@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
 import farmingRoutes from "./routes/farmingRoutes.js";
+import consultationRoutes from "./routes/consultationRoutes.js";
 import path from "path";
 const app = express();
 
@@ -21,6 +22,11 @@ app.use(
 app.use(
   "/api/farming",
   farmingRoutes
+);
+
+app.use(
+  "/api/consultations",
+  consultationRoutes
 );
 
 app.get("/", (req, res) => {
