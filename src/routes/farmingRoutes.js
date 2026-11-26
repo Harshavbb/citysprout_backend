@@ -7,9 +7,14 @@ import {
   uploadImage,
   detectSpace,
   getAnalysisHistory,
-  deleteAnalysis
+  deleteAnalysis,
+  analyzeGarden
 }
 from "../controllers/farmingController.js";
+
+
+import visionUpload from "../middleware/visionUploadMiddleware.js";
+import { analyzeGardenSpace } from "../controllers/visionController.js";
 
 const router = express.Router();
 
@@ -34,4 +39,15 @@ router.delete(
   deleteAnalysis
 );
 
+router.post(
+  "/vision",
+  visionUpload.single("file"),
+  analyzeGardenSpace
+);
+
+router.post(
+  "/analyze",
+  visionUpload.single("file"),
+  analyzeGarden
+);
 export default router;
